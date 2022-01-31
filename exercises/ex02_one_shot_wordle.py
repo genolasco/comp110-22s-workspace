@@ -1,4 +1,4 @@
-"""Another step toward Wordle Exercise"""
+"""Another step toward Wordle Exercise."""
 
 __author__ = "730411655"
 
@@ -12,9 +12,9 @@ emoji: str = ""
 guess: str = input("What is your 6-letter guess? ")
 
 while len(guess) < (6):
-    guess: str = input("That was not 6 letters! Try again: ")
+    print("That was not 6 letters! Try again: ")
     while len(guess) > (6):
-        guess: str = input("That was not 6 letters! Try again: ")
+        print("That was not 6 letters! Try again: ")
 
 if guess == secret_word:
     print("Woo! You got it! ")
@@ -29,7 +29,7 @@ while i < len(secret_word):
         double_check: int = 0
         while not exist and double_check < len(secret_word): 
             if guess[i] == secret_word[double_check]:
-                exist: bool = True
+                exist = True
             else: 
                 double_check += 1
         if exist:
