@@ -6,12 +6,15 @@ __author__ = "730411655"
 def contains_char(any_length: str, single_chr: str) -> bool:
     """Searches for a single chr and specifc chr string."""
     assert len(single_chr) == 1
+    equal: bool = False
     i: int = 0
-    while i < len(any_length):
+    while equal is False and i < len(any_length):
         if any_length[i] == single_chr:
-            return True
+            equal is not False
         else:
             i += 1
+    if equal is not False:
+        return True
     else:
         return False
 
@@ -27,19 +30,13 @@ def emojified(guess: str, secret_word: str) -> str:
     while i < len(secret_word):
         if guess[i] == secret_word[i]:
             emoji += GREEN_BOX
+            i += 1
+        elif contains_char(secret_word, guess[i]) is False:
+            emoji += WHITE_BOX
+            i += 1
         else:
-            exist: bool = False 
-            double_check: int = 0
-            while not exist and double_check < len(secret_word): 
-                if guess[i] == secret_word[double_check]:
-                    exist = True
-                else: 
-                    double_check += 1
-            if exist:
-                emoji += YELLOW_BOX
-            else:
-                emoji += WHITE_BOX
-        i += 1
+            emoji += YELLOW_BOX
+            i += 1
     return emoji
 
 
@@ -47,9 +44,9 @@ def input_guess(expected_length: int) -> str:
     """Tests for the expected word length."""
     word: str = input(f"Enter a {expected_length} character word: ")
     while len(word) < (expected_length):
-        word: str = input(f"That wasn't {expected_length} chars! Try again: ")
+        print(f"That wasn't {expected_length} chars! Try again: ")
         while len(word) > (expected_length):
-            word: str = input(f"That wasn't {expected_length} chars! Try again: ")
+            print(f"That wasn't {expected_length} chars! Try again: ")
     return word
 
 
@@ -59,7 +56,7 @@ def main() -> None:
     turn: int = 1
     won: bool = False
    
-    while turn <= (6) and won == False:
+    while turn <= (6) and not won:
         print(f"=== Turn {turn}/6 ===")
         turn += 1
         correct_guess: str = input_guess(len(secret_word)) 
