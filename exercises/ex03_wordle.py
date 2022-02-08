@@ -8,16 +8,18 @@ def contains_char(any_length: str, single_chr: str) -> bool:
     assert len(single_chr) == 1
     equal: bool = False
     i: int = 0
+    # i is counting each character to check each chr in the word you guess
     while equal is False and i < len(any_length):
         if any_length[i] == single_chr:
             equal = True
         else:
             i += 1
+            # you add to continue the loop until the counter is greater then the actual length
     if equal is True:
         return True
     else:
         return False
-
+  
 
 def emojified(guess: str, secret_word: str) -> str:
     """Testing two strings for correct colored boxs."""
@@ -45,6 +47,7 @@ def input_guess(expected_length: int) -> str:
     word = input(f"Enter a {expected_length} character word: ")
     while len(word) != (expected_length):
         word = input(f"That wasn't {expected_length} chars! Try again: ")
+        # checks the length with the givin input you give it
     return word
 
 
@@ -66,6 +69,7 @@ def main() -> None:
             print(f"You won in {turn}/6 turns! ")
     if turn > (6):
         print("X/6 - Sorry, try again tomorrow!")
+        # wordle only has 6 max tries so one i > 6 the games has to end
 
 
 if __name__ == "__main__":
