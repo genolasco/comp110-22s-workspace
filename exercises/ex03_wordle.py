@@ -10,10 +10,10 @@ def contains_char(any_length: str, single_chr: str) -> bool:
     i: int = 0
     while equal is False and i < len(any_length):
         if any_length[i] == single_chr:
-            equal is not False
+            equal = True
         else:
             i += 1
-    if equal is not False:
+    if equal is True:
         return True
     else:
         return False
@@ -25,28 +25,26 @@ def emojified(guess: str, secret_word: str) -> str:
     WHITE_BOX: str = "\U00002B1C"
     GREEN_BOX: str = "\U0001F7E9"
     YELLOW_BOX: str = "\U0001F7E8"
-    emoji: str = ""
     i: int = 0
+    emoji: str = ""
     while i < len(secret_word):
         if guess[i] == secret_word[i]:
             emoji += GREEN_BOX
             i += 1
-        elif contains_char(secret_word, guess[i]) is False:
-            emoji += WHITE_BOX
+        elif contains_char(secret_word, guess[i]) is True:
+            emoji += YELLOW_BOX
             i += 1
         else:
-            emoji += YELLOW_BOX
+            emoji += WHITE_BOX
             i += 1
     return emoji
 
 
 def input_guess(expected_length: int) -> str:
     """Tests for the expected word length."""
-    word: str = input(f"Enter a {expected_length} character word: ")
-    while len(word) < (expected_length):
-        print(f"That wasn't {expected_length} chars! Try again: ")
-        while len(word) > (expected_length):
-            print(f"That wasn't {expected_length} chars! Try again: ")
+    word = input(f"Enter a {expected_length} character word: ")
+    while len(word) != (expected_length):
+        word = input(f"That wasn't {expected_length} chars! Try again: ")
     return word
 
 
@@ -68,4 +66,7 @@ def main() -> None:
             print(f"You won in {turn}/6 turns! ")
     if turn > (6):
         print("X/6 - Sorry, try again tomorrow!")
-   
+
+
+if __name__ == "__main__":
+    main()
