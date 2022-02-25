@@ -57,7 +57,7 @@ def test_concat_single() -> None:
 
 def test_concate_multiple() -> None:
     """Generates a new list from sub and only_evens."""
-    a = []
+    a: list[int] = []
     b = [1, 2]
     assert concat(a, b) == [1, 2]
 
