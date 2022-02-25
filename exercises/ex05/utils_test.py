@@ -42,10 +42,10 @@ def test_sub_multiple() -> None:
 
 def test_sub_again() -> None:
     """Two integers will create a subset of a list."""
-    x = [2, 4, 6, 8]
-    start = 4
-    end = 8
-    assert sub(x, start, end) == 6
+    x = [1, 2, 3, 4]
+    start = 1
+    end = 5
+    assert sub(x, start, end) == [2, 3, 4]
 
 
 def test_concat_single() -> None:

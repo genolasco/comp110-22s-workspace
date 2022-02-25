@@ -13,12 +13,15 @@ def only_evens(x: list[int]) -> list[int]:
 
 
 def sub(x: list[int], start: int, end: int) -> list[int]:
-    """Two integers will create a subset of a list. """
+    """Two integers will create a subset of a list."""
     sub_list: list[int] = []
     if start < 0:
         start = 0
     if end > len(x):
         end = len(x) - 1
+        while start <= end:
+            sub_list.append(x[start])
+            start += 1
     if len(x) == 0 or start > end or end <= 0:
         return sub_list
     while start < end:
