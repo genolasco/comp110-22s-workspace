@@ -43,14 +43,13 @@ def columnar(row_table: list[dict[str, str]]) -> dict[str, list[str]]:
 def head(N: dict[str, list[str]], count_rows: int) -> dict[str, list[str]]:
     """Produces a new column table with just the first N rows of data of each column."""
     result: dict[str, list[str]] = {}
-
     for column in N:
         values: list[str] = []
         i: int = 0 
         while i < count_rows:
             values.append(N[column][i])
-        i = i + 1
-        
+            i = i + 1
+            result[column] = values        
     return result
 
 
@@ -63,15 +62,15 @@ def select(a: dict[str, list[str]], name: list[str]) -> dict[str, list[str]]:
 
 
 def concat(a: dict[str, list[str]], b: dict[str, list[str]]) -> dict[str, list[str]]:
-    """Produce a new column tabel with 2 column tables combined."""
+    """Produce a new column table with 2 column tables combined."""
     result: dict[str, list[str]] = {}
     for column in a:
         result[column] = a[column]
     for column in b:
         if column in result:
-            result[column] = b[column]
+            result[column] += b[column]
         else:
-            result[column] = b[column]
+            result[column] += b[column]
     return result
     
 
@@ -82,7 +81,7 @@ def count(counter: list[str]) -> dict[str, int]:
         if item in result:
             result[item] += 1
         else:
-            result[item] += 1
+            result[item] = 1
     return result
 
 
