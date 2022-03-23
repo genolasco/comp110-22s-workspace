@@ -68,7 +68,10 @@ def concat(a: dict[str, list[str]], b: dict[str, list[str]]) -> dict[str, list[s
         result[column] = a[column]
     for column in b:
         if column in result:
-            result[column] += b[column]
+            i = 0
+            while i < len(b[column]):
+                result[column].append(b[column][i])
+                i += 1
         else:
             result[column] += b[column]
     return result
