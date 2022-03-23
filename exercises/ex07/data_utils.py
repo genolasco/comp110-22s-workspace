@@ -40,15 +40,17 @@ def columnar(row_table: list[dict[str, str]]) -> dict[str, list[str]]:
     return result
 
 
-def head(N: dict[str, list[str]], count_rows: int) -> dict[str, list[str]]:
+def head(n: dict[str, list[str]], count_rows: int) -> dict[str, list[str]]:
     """Produces a new column table with just the first N rows of data of each column."""
     result: dict[str, list[str]] = {}
-    for column in N:
+    for column in n:
         values: list[str] = []
-        i: int = 0 
+        i = 0 
+        if len(n[column]) < count_rows:
+            count_rows = len(n[column])
         while i < count_rows:
-            values.append(N[column][i])
-            i = i + 1
+            values.append(n[column][i])
+            i += 1
             result[column] = values        
     return result
 
@@ -73,7 +75,7 @@ def concat(a: dict[str, list[str]], b: dict[str, list[str]]) -> dict[str, list[s
                 result[column].append(b[column][i])
                 i += 1
         else:
-            result[column] += b[column]
+            result[column] = b[column]
     return result
     
 
