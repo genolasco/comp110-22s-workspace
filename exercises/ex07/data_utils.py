@@ -44,7 +44,6 @@ def head(n: dict[str, list[str]], count_rows: int) -> dict[str, list[str]]:
     """Produces a new column table with just the first N rows of data of each column."""
     result: dict[str, list[str]] = {}
     for item in n:
-        values: list[str] = []
         i = 0 
         if len(n[item]) < count_rows:
             count_rows = len(n[item])
@@ -53,7 +52,7 @@ def head(n: dict[str, list[str]], count_rows: int) -> dict[str, list[str]]:
             values.append(n[item][i])
             i += 1
         result[item] = values     
-           
+
     return result
 
 
